@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ask</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_questions">Questions</string>
+    <string name="homeStory">Welcome to Ask! In our app you can ask questions to fellow students who hopefully are able to help you out. of course you can help others out and earn reputation!</string>
+    <string name="NoMemberText">Not part of the community yet? joining is free :)</string>
+</resources>
