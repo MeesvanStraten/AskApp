@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val registerButton = findViewById<Button>(R.id.buttonRegister)
+        val registerButton = findViewById<Button>(R.id.buttonLogin)
         val loginButton = findViewById<Button>(R.id.buttonLogin)
 
 
