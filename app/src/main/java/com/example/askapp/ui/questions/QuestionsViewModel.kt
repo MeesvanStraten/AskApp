@@ -7,7 +7,11 @@ import androidx.lifecycle.ViewModel
 class QuestionsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Question fragment"
     }
-    val text: LiveData<String> = _text
+    var questionList = mutableListOf<Question>()
+
+
+    fun addQuestion(question: Question){
+        questionList.add(question)
+    }
 }
