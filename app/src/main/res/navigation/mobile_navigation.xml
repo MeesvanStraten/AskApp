@@ -17,11 +17,11 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
-    <fragment
+    <activity
         android:id="@+id/navigation_questions"
-        android:name="com.example.askapp.ui.questions.QuestionsFragment"
+        android:name="com.example.askapp.ui.questions.activityQuestion"
         android:label="@string/title_questions"
-        tools:layout="@layout/fragment_questions" />
+        tools:layout="@layout/activity_question" />
 
     <fragment
         android:id="@+id/navigation_register"
