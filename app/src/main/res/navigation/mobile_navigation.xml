@@ -12,21 +12,15 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_answers"
         android:name="com.example.askapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_answers"
         tools:layout="@layout/fragment_dashboard" />
 
-    <activity
-        android:id="@+id/navigation_questions"
-        android:name="com.example.askapp.ui.questions.activityQuestion"
-        android:label="@string/title_questions"
-        tools:layout="@layout/activity_question" />
-
     <fragment
-        android:id="@+id/navigation_register"
-        android:name="com.example.askapp.ui.register.RegisterFragment"
-        android:label="Register"
-        tools:layout="@layout/register_fragment" />
+        android:id="@+id/navigation_questions"
+        android:name="com.example.askapp.ui.questions.QuestionFragment"
+        android:label="@string/title_questions"
+        tools:layout="@layout/question_fragment" />
 
 </navigation>
