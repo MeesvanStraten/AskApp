@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.answers.AnswerQuestions"></activity>
-        <fragment
+        <activity
             android:name=".ui.questions.activityQuestion"
             android:label="@string/title_activity_test_question"
             android:theme="@style/AppTheme.NoActionBar" />
