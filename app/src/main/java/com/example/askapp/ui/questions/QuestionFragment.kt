@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.askapp.Classes.Question
 import com.example.askapp.R
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,11 +53,13 @@ class QuestionFragment : Fragment() {
         btnSubmitQuestion.setOnClickListener {
             var questionData = hashMapOf(
                 "question" to questionInput.text.toString()
+
             )
+            val testQuestion = Question(questionInput.text.toString())
 
             db.collection("questions")
                 .document()
-                .set(questionData)
+                .set(testQuestion)
             questionInput.text.clear()
         }
     }
