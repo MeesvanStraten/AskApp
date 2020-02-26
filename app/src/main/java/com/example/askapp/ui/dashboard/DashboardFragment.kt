@@ -43,7 +43,8 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
          lateinit var database: DatabaseReference
-        database = FirebaseDatabase.getInstance().reference
+        database = FirebaseDatabase.getInstance().getReferenceFromUrl("https://askapp-eade3.firebaseio.com/questions")
+
 
 
         val listOfQuestions: ArrayList<Question?> = arrayListOf()
@@ -53,8 +54,8 @@ class DashboardFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 for (singleSnapshot in dataSnapshot.children) {
-                    val question =
-                        singleSnapshot.getValue(Question::class.java)
+                    val question = Question()
+                       question.question = singleSnapshot.child("").child("question").getValue().toString()
                     listOfQuestions.add(question)
 
                 }
