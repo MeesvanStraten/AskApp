@@ -13,17 +13,20 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.askapp.Classes.Question
 import com.example.askapp.R
 import com.google.firebase.FirebaseApp
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.content_test_question.*
 
 
 class QuestionFragment : Fragment() {
+    var database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
     companion object {
         fun newInstance() = QuestionFragment()
     }
 
     private lateinit var viewModel: QuestionViewModel
-
     override fun onCreateView(
 
     inflater: LayoutInflater, container: ViewGroup?,
@@ -46,26 +49,19 @@ class QuestionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val btnSubmitQuestion = view.findViewById<Button>(R.id.buttonSubmitQuestion)
         val questionInput = view.findViewById<EditText>(R.id.questionEditText)
-        FirebaseApp.initializeApp(this.requireContext())
-
-        val db = FirebaseFirestore.getInstance()
 
         btnSubmitQuestion.setOnClickListener {
-            var questionData = hashMapOf(
-                "question" to questionInput.text.toString()
-
-            )
-            val testQuestion = Question(questionInput.text.toString())
-
-            db.collection("questions")
-                .document()
-                .set(testQuestion)
+            writeNewQuestion(questionEditText.text.toString())
             questionInput.text.clear()
         }
     }
 
 
+    private fun writeNewQuestion(question: String) {
+        val question = Question(question)
+        database.child("questions").push().setValue(question)
 
+    }
 
 
 

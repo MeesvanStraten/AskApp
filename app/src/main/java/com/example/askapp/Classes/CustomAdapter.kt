@@ -8,13 +8,13 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.askapp.R
 
-class CustomAdapter(val questionList:ArrayList<Question>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(val questionList:ArrayList<Question?>): RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val question: Question = questionList[position]
+        val question: Question? = questionList[position]
 
         // bind UI text elements here to specific question from list.
-        holder.titleText.text = question.question
+        holder.titleText.text = question!!.question
 
         if (question.answers.size >= 1){
             holder.contentText.text =question.answers.first()

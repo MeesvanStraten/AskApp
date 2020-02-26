@@ -16,7 +16,9 @@ import com.example.askapp.Classes.CustomAdapter
 import com.example.askapp.Classes.Question
 import com.example.askapp.R
 import com.google.firebase.FirebaseApp
+import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import java.lang.Exception
 import java.util.*
@@ -40,25 +42,37 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        FirebaseApp.initializeApp(this.requireContext())
-        var db = FirebaseFirestore.getInstance()
+         lateinit var database: DatabaseReference
+        database = FirebaseDatabase.getInstance().reference
 
-        val listOfQuestions: ArrayList<Question> = arrayListOf()
+
+        val listOfQuestions: ArrayList<Question?> = arrayListOf()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
+        val questionListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                for (singleSnapshot in dataSnapshot.children) {
+                    val question =
+                        singleSnapshot.getValue(Question::class.java)
+                    listOfQuestions.add(question)
 
-        listOfQuestions.add(Question("Does this work?"))
-        listOfQuestions.add(Question("second one???!!!"))
-        listOfQuestions.add(Question("Third one!"))
+                }
 
+                val adapter = CustomAdapter(listOfQuestions)
+                recyclerView.adapter = adapter
 
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        }
+        database.addValueEventListener(questionListener)
         recyclerView.layoutManager = LinearLayoutManager(this.context,RecyclerView.VERTICAL,false)
 
-
-
-        val adapter = CustomAdapter(listOfQuestions)
-
-        recyclerView.adapter = adapter
 
     }
 }
