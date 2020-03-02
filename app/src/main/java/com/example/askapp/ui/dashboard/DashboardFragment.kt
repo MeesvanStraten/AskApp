@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -42,6 +43,8 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val card = view.findViewById<CardView>(R.id.cardViewItem)
+
          lateinit var database: DatabaseReference
         database = FirebaseDatabase.getInstance().getReferenceFromUrl("https://askapp-eade3.firebaseio.com/questions")
 
@@ -75,7 +78,9 @@ class DashboardFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(this.context,RecyclerView.VERTICAL,false)
 
 
+
     }
+
 }
 
 
